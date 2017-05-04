@@ -6,7 +6,7 @@ const middlewares = jsonServer.defaults()
 const port = process.env.API_PORT || 5000
 
 //const m = mock()
-console.log(m)
+//console.log(m)
 
 const router = jsonServer.router(m)
 server.use(middlewares)

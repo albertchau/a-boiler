@@ -75,6 +75,9 @@ const config = createConfig([
       historyApiFallback: {
         index: publicPath,
       },
+      hot: false,
+      inline: false,
+      watchContentBase: false,
       host,
       port,
     }),

@@ -1,5 +1,4 @@
 // https://github.com/diegohaz/arc/wiki/Example-app
-import 'react-hot-loader/patch'
 import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
@@ -25,10 +24,10 @@ const renderApp = () => (
 
 const root = document.getElementById('app')
 render(renderApp(), root)
-
-if (module.hot) {
-  module.hot.accept('components/App', () => {
-    require('components/App')
-    render(renderApp(), root)
-  })
-}
+//
+// if (module.hot) {
+//   module.hot.accept('components/App', () => {
+//     require('components/App')
+//     render(renderApp(), root)
+//   })
+// }

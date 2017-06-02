@@ -1,12 +1,12 @@
-import { Button } from 'antd'
-import React from 'react'
-import Testing from './Testing'
+import { Button } from "antd"
+import React from "react"
+import Testing from "./Testing"
 
 const HomePage = () => {
   return (
     <div>
       <Testing />
-      <Button loading={{ delay: 2000 }}> Hello Button! </Button>
+      <Button loading={{ delay: 2000 }}> Hello Manninsdf </Button>
     </div>
   )
 }

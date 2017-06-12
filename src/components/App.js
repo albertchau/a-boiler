@@ -5,6 +5,7 @@ import { injectGlobal, ThemeProvider } from "styled-components"
 import HomePage from "./HomePage"
 
 import theme from "./themes/default"
+import RequestPage from "./RequestPage"
 
 injectGlobal`
   body {
@@ -17,6 +18,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Switch>
         <Route path="/" component={HomePage} exact/>
+        <Route path="/overview/new" component={RequestPage} exact/>
       </Switch>
     </ThemeProvider>
   )

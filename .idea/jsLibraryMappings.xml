@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{Node.js Core, tBoils/node_modules}" />
-    <file url="PROJECT" libraries="{requirejs-DefinitelyTyped, tBoils/node_modules}" />
+    <file url="file://$PROJECT_DIR$" libraries="{Node.js Core, a-boiler/node_modules}" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.es6" libraries="{Node.js Core}" />
+    <file url="PROJECT" libraries="{a-boiler/node_modules, node-DefinitelyTyped}" />
   </component>
 </project>

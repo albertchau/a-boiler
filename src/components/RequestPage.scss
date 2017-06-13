@@ -1,11 +1,17 @@
 
 .cap-request-page-container {
+  h2 {
+    margin-bottom: 20px;
+  }
   .ant-form-item {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 }
 
 .cap-machine-row {
+  &:not(:last-child) {
+    margin-bottom: 14px;
+  }
   .ant-form-item-label {
     line-height: 25px;
   }

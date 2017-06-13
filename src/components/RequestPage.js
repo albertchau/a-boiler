@@ -12,7 +12,7 @@ import {
 } from "../store/intake/actions"
 import PropTypes from "prop-types"
 import MachineRow from "./MachineRow"
-import { Button, Col, Input, Layout, Row, Select } from "antd"
+import { Button, Col, Layout, Row, Select } from "antd"
 import { HFItem, PInput, PSelect } from "./CustomFormInputs"
 import "./RequestPage.scss"
 
@@ -23,9 +23,9 @@ const RequestPage = (props) => {
   const { intakeValues, intakeForm, onBaseFieldEdit, addMachineDetail, onIntakeSubmit, onMachineDelete, onMachineEdit, onMachineCopy } = props
   return (
     <Content>
-      <Row type='flex' className={'cap-request-page-container'}>
+      <Row type='flex' className="cap-request-page-container">
         <Col offset={2} span={20}>
-          <Row type='flex' style={{ marginBottom: '20px' }}>
+          <Row type='flex'>
             <h2>
               General Request Details
             </h2>
@@ -33,15 +33,15 @@ const RequestPage = (props) => {
           <HFItem label={'Title'}>
             <PInput
               value={intakeValues.title || ''}
-              onChange={onBaseFieldEdit}
+              onChange={({ target }) => onBaseFieldEdit(target.name, target.value)}
               name='title'
             />
           </HFItem>
           <HFItem label={'Project Name'}>
             <PInput
               value={intakeValues.projectName || ''}
-              onChange={onBaseFieldEdit}
-              name="projectName"
+              onChange={({ target }) => onBaseFieldEdit(target.name, target.value)}
+              name='projectName'
             />
           </HFItem>
           <Row>
@@ -49,11 +49,11 @@ const RequestPage = (props) => {
               <HFItem label={'Priority'} labelWidth={8}>
                 <PSelect
                   value={intakeValues.priority}
-                  onSelect={onBaseFieldEdit}
-                  name="priority"
-                  options={intakeForm.priorityOps}
                   style={{ width: 120 }}
-                />
+                  onSelect={value => onBaseFieldEdit('priority', value)}
+                >
+                  {intakeForm.priorityOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
+                </PSelect>
               </HFItem>
             </Col>
             <Col span={15}>
@@ -61,20 +61,20 @@ const RequestPage = (props) => {
                 <PSelect
                   value={intakeValues.actionType}
                   style={{ width: 120 }}
-                  name="actionType"
-                  onSelect={onBaseFieldEdit}
-                  options={intakeForm.actionTypeOps}
-                />
+                  onSelect={value => onBaseFieldEdit('actionType', value)}
+                >
+                  {intakeForm.actionTypeOps.map(op => <Option key={op.value}>{op.label}</Option>)}
+                </PSelect>
               </HFItem>
             </Col>
           </Row>
           <HFItem label={'Description'}>
             <PInput
-              type="textarea"
+              type='textarea'
               rows={3}
               value={intakeValues.description || ''}
-              onChange={onBaseFieldEdit}
-              name="description"
+              onChange={({ target }) => onBaseFieldEdit(target.name, target.value)}
+              name='description'
             />
           </HFItem>
           <Row type='flex'>

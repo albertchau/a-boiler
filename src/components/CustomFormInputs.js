@@ -18,7 +18,7 @@ const VItemDyno = n => ({ xs: n })
 export const VFItem = ({ label, children, span, ...passProps }) => {
   return (
     <Col {...passProps} {...(span ? VItemDyno(span) : VItemLayout)}>
-      <FormItem label={label}>
+      <FormItem label={label} style={{lineHeight: '25px', marginBottom: '5px'}}>
         {children}
       </FormItem>
     </Col>

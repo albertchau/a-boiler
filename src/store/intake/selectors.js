@@ -29,7 +29,10 @@ export const getIntakeForm = () => {
 
 export const getMachineDetailForm = () => {
   return {
-    priorityOps,
-    actionTypeOps,
+    dataCenterOps: actionTypeOps,
+    platformOps: actionTypeOps,
+    skuOps: actionTypeOps,
+    environmentOps: actionTypeOps,
+    requestTypeOps: actionTypeOps
   }
 }

@@ -58,11 +58,13 @@ export const onMachineCopy = (machineKey) => {
 }
 
 export const onIntakeSubmit = (intakeValues) => {
-  console.log(intakeValues)
   return {
     type: SUBMIT_INTAKE_FORM,
     intakeValues
   }
 }
 
+const requestIntakeForm = () => {
 
+  return {}
+}

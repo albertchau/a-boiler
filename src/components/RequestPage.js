@@ -31,13 +31,11 @@ const RequestPage = (props) => {
           defaultSelectedKeys={[ '2' ]}
           style={{ lineHeight: '64px' }}
         >
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
+          <Menu.Item key="1">Overview</Menu.Item>
         </Menu>
       </Header>
       <Content style={{ padding: '0 50px' }}>
-        <Row type='flex' className="cap-request-page-container" style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+        <Row type='flex' className="cap-request-page-container">
           <Col offset={2} span={20}>
             <Row type='flex'>
               <h2>
@@ -71,13 +69,13 @@ const RequestPage = (props) => {
                 </HFItem>
               </Col>
               <Col span={15}>
-                <HFItem label={'Action Type'}>
+                <HFItem label={'Request Type'}>
                   <PSelect
-                    value={intakeValues.actionType}
+                    value={intakeValues.requestType}
                     style={{ width: 120 }}
-                    onSelect={value => onBaseFieldEdit('actionType', value)}
+                    onSelect={value => onBaseFieldEdit('requestType', value)}
                   >
-                    {intakeForm.actionTypeOps.map(op => <Option key={op.value}>{op.label}</Option>)}
+                    {intakeForm.requestTypeOps.map(op => <Option key={op.value}>{op.label}</Option>)}
                   </PSelect>
                 </HFItem>
               </Col>
@@ -131,7 +129,7 @@ const RequestPage = (props) => {
         </Row>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©2016 Created by Ant UED
+        Box 2017
       </Footer>
     </Layout>
   )
@@ -175,13 +173,13 @@ RequestPage.propTypes = {
     projectName: PropTypes.string,
     priority: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
     priorityOps: PropTypes.array,
-    actionType: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-    actionTypeOps: PropTypes.array,
+    requestType: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+    requestTypeOps: PropTypes.array,
     description: PropTypes.string,
   }),
   intakeForm: PropTypes.shape({
     priorityOps: PropTypes.array,
-    actionTypeOps: PropTypes.array
+    requestTypeOps: PropTypes.array
   })
 }
 

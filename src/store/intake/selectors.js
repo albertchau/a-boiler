@@ -23,7 +23,7 @@ const actionTypeOps = new Array(6).fill(0).map((_, n) => ({ value: faker.random.
 export const getIntakeForm = () => {
   return {
     priorityOps,
-    actionTypeOps,
+    requestTypeOps: actionTypeOps,
   }
 }
 
@@ -33,6 +33,6 @@ export const getMachineDetailForm = () => {
     platformOps: actionTypeOps,
     skuOps: actionTypeOps,
     environmentOps: actionTypeOps,
-    requestTypeOps: actionTypeOps
+    actionTypeOps
   }
 }

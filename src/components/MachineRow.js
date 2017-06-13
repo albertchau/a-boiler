@@ -11,18 +11,18 @@ const selectWidth = { width: '100px' }
 const MachineRow = (props) => {
   const { machine, onEdit, onCopy, onDelete, machineDetailForm } = props
   return (
-    <Row gutter={12} type='flex' className="cap-machine-row">
+    <Row gutter={12} type='flex' className="cap-machine-row" justify="space-between">
       <Col>
         <PSelect
-          placeholder="Request Type"
-          value={machine.requestType}
+          placeholder="Action Type"
+          value={machine.actionType}
           style={selectWidth}
-          onSelect={value => onEdit('requestType', value)}
+          onSelect={value => onEdit('actionType', value)}
         >
-          {machineDetailForm.requestTypeOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
+          {machineDetailForm.actionTypeOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
         </PSelect>
       </Col>
-      <Col>
+      <Col span={3}>
         <PInput
           placeholder="Service Name"
           value={machine.serviceName || ''}
@@ -30,7 +30,7 @@ const MachineRow = (props) => {
           name='serviceName'
         />
       </Col>
-      <Col>
+      <Col span={3}>
         <PInput
           placeholder="Naming Pattern"
           value={machine.namingPattern || ''}
@@ -43,7 +43,6 @@ const MachineRow = (props) => {
           placeholder="Project Live Date"
           value={machine.projectGoLive}
           onChange={(date) => onEdit('projectGoLive', date)}
-          className="has-error"
         />
       </Col>
       <Col>
@@ -121,7 +120,7 @@ const iconStyle = {
 
 MachineRow.propTypes = {
   machine: PropTypes.shape({
-    requestType: PropTypes.string,
+    actionType: PropTypes.string,
     serviceName: PropTypes.string,
     namingPattern: PropTypes.string,
     projectGoLive: PropTypes.object,
@@ -138,7 +137,7 @@ MachineRow.propTypes = {
 
   // these are from connected
   machineDetailForm: PropTypes.shape({
-    requestTypeOps: PropTypes.array,
+    actionTypeOps: PropTypes.array,
     environmentOps: PropTypes.array,
     dataCenterOps: PropTypes.array,
     platformOps: PropTypes.array,

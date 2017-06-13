@@ -13,8 +13,8 @@ import {
 import PropTypes from "prop-types"
 import MachineRow from "./MachineRow"
 import { Button, Col, Input, Layout, Row, Select } from "antd"
-import { HFItem } from "./CustomFormInputs"
-import './RequestPage.scss'
+import { HFItem, PInput, PSelect } from "./CustomFormInputs"
+import "./RequestPage.scss"
 
 const { Content } = Layout
 const { Option } = Select
@@ -25,56 +25,56 @@ const RequestPage = (props) => {
     <Content>
       <Row type='flex' className={'cap-request-page-container'}>
         <Col offset={2} span={20}>
-          <Row type='flex' style={{ marginBottom: '20px'}}>
+          <Row type='flex' style={{ marginBottom: '20px' }}>
             <h2>
               General Request Details
             </h2>
           </Row>
           <HFItem label={'Title'}>
-            <Input
+            <PInput
               value={intakeValues.title || ''}
-              onChange={({ target }) => onBaseFieldEdit(target.name, target.value)}
+              onChange={onBaseFieldEdit}
               name='title'
             />
           </HFItem>
           <HFItem label={'Project Name'}>
-            <Input
+            <PInput
               value={intakeValues.projectName || ''}
-              onChange={({ target }) => onBaseFieldEdit(target.name, target.value)}
-              name='projectName'
+              onChange={onBaseFieldEdit}
+              name="projectName"
             />
           </HFItem>
           <Row>
             <Col span={9}>
               <HFItem label={'Priority'} labelWidth={8}>
-                <Select
+                <PSelect
                   value={intakeValues.priority}
+                  onSelect={onBaseFieldEdit}
+                  name="priority"
+                  options={intakeForm.priorityOps}
                   style={{ width: 120 }}
-                  onSelect={value => onBaseFieldEdit('priority', value)}
-                >
-                  {intakeForm.priorityOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
-                </Select>
+                />
               </HFItem>
             </Col>
             <Col span={15}>
               <HFItem label={'Action Type'}>
-                <Select
+                <PSelect
                   value={intakeValues.actionType}
                   style={{ width: 120 }}
-                  onSelect={value => onBaseFieldEdit('actionType', value)}
-                >
-                  {intakeForm.actionTypeOps.map(op => <Option key={op.value}>{op.label}</Option>)}
-                </Select>
+                  name="actionType"
+                  onSelect={onBaseFieldEdit}
+                  options={intakeForm.actionTypeOps}
+                />
               </HFItem>
             </Col>
           </Row>
           <HFItem label={'Description'}>
-            <Input
-              type='textarea'
+            <PInput
+              type="textarea"
               rows={3}
               value={intakeValues.description || ''}
-              onChange={({ target }) => onBaseFieldEdit(target.name, target.value)}
-              name='description'
+              onChange={onBaseFieldEdit}
+              name="description"
             />
           </HFItem>
           <Row type='flex'>

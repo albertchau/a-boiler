@@ -1,7 +1,7 @@
 import { initialState } from './selectors'
 import {
   ADD_MACHINE_DETAIL, COPY_MACHINE_DETAIL, DELETE_MACHINE_DETAIL, EDIT_MACHINE_DETAIL,
-  FIELD_EDIT
+  FIELD_EDIT, SUBMIT_INTAKE_FORM
 } from "./actions"
 
 const repeatKeyInArray = (arr, repeatKey, nextKey) => {
@@ -78,6 +78,9 @@ export default (state = initialState, action) => {
       return { ...state, intakeValues: editMachineDetail(state.intakeValues, action) }
     case DELETE_MACHINE_DETAIL:
       return { ...state, intakeValues: deleteMachineDetail(state.intakeValues, action) }
+    case SUBMIT_INTAKE_FORM:
+      console.log(action.intakeValues)
+      return state
   }
   return state
 }

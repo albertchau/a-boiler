@@ -1,5 +1,5 @@
 import React from "react"
-import { Col, DatePicker, Form, Input, Select } from "antd"
+import { DatePicker, Form, Input, Select } from "antd"
 import { onlyUpdateForKeys } from "recompose"
 const FormItem = Form.Item
 
@@ -15,17 +15,14 @@ export const HFItem = ({ labelWidth, children, ...passProps }) => {
 
 const purifyInput = onlyUpdateForKeys([ 'value' ])
 export const PInput = purifyInput(props => {
-  console.log('input pure')
   return <Input {...props}/>
 })
 
 const purifySelect = onlyUpdateForKeys([ 'value', 'options' ])
 export const PSelect = purifySelect(props => {
-  console.log('select pure')
   return <Select {...props}/>
 })
 
 export const PDatePicker = purifyInput(props => {
-  console.log('datePicker pure')
   return <DatePicker {...props}/>
 })

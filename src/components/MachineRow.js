@@ -7,15 +7,16 @@ import { getMachineDetailForm } from "../store/intake/selectors"
 import { PDatePicker, PInput, PSelect } from "./CustomFormInputs"
 const { Option } = Select
 
+const selectWidth = { width: '100px' }
 const MachineRow = (props) => {
   const { machine, onEdit, onCopy, onDelete, machineDetailForm } = props
   return (
-    <Row gutter={16} type='flex' className={'cap-machine-row'}>
+    <Row gutter={12} type='flex' className="cap-machine-row">
       <Col>
         <PSelect
           placeholder="Request Type"
           value={machine.requestType}
-          style={{ width: 120 }}
+          style={selectWidth}
           onSelect={value => onEdit('requestType', value)}
         >
           {machineDetailForm.requestTypeOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
@@ -42,6 +43,7 @@ const MachineRow = (props) => {
           placeholder="Project Live Date"
           value={machine.projectGoLive}
           onChange={(date) => onEdit('projectGoLive', date)}
+          className="has-error"
         />
       </Col>
       <Col>
@@ -55,7 +57,7 @@ const MachineRow = (props) => {
         <PSelect
           placeholder="Environment"
           value={machine.environment}
-          style={{ width: 110 }}
+          style={selectWidth}
           onSelect={value => onEdit('environment', value)}
         >
           {machineDetailForm.environmentOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
@@ -65,7 +67,7 @@ const MachineRow = (props) => {
         <PSelect
           placeholder="Platform"
           value={machine.platform}
-          style={{ width: 110 }}
+          style={selectWidth}
           onSelect={value => onEdit('platform', value)}
         >
           {machineDetailForm.platformOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
@@ -75,7 +77,7 @@ const MachineRow = (props) => {
         <PSelect
           placeholder="Data Center"
           value={machine.dataCenter}
-          style={{ width: 110 }}
+          style={selectWidth}
           onSelect={value => onEdit('dataCenter', value)}
         >
           {machineDetailForm.dataCenterOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
@@ -85,7 +87,7 @@ const MachineRow = (props) => {
         <PSelect
           placeholder="SKU"
           value={machine.sku}
-          style={{ width: 110 }}
+          style={selectWidth}
           onSelect={value => onEdit('environment', value)}
         >
           {machineDetailForm.skuOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
@@ -94,16 +96,15 @@ const MachineRow = (props) => {
       <Col>
         <InputNumber
           placeholder="Quantity"
-          value={machine.quantity || 0}
+          value={machine.quantity}
           onChange={value => onEdit('quantity', value)}
         />
       </Col>
       <Col>
-        <span>
-          <Icon style={iconStyle} onClick={onCopy} type="copy"/>
-          <span className="ant-divider"/>
-          <Icon style={iconStyle} onClick={onDelete} type="delete"/>
-        </span>
+        <Icon style={iconStyle} onClick={onCopy} type="copy"/>
+      </Col>
+      <Col>
+        <Icon style={iconStyle} onClick={onDelete} type="delete"/>
       </Col>
     </Row>
   )

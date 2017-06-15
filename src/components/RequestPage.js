@@ -18,13 +18,13 @@ import "./RequestPage.scss"
 
 const { Header, Content, Footer } = Layout
 const { Option } = Select
+const { Group: RadioGroup, Button: RadioBtn } = Radio
 
-const prioritySelectLayout = { labelCol: { span: 12 }, wrapperCol: { span: 12 } }
-const requestTypeSelectLayout = { labelCol: { span: 3 }, wrapperCol: { span: 18 } }
+const prioritySelectLayout = { labelCol: { span: 9 }, wrapperCol: { span: 15 } }
+const requestTypeSelectLayout = { labelCol: { span: 4 }, wrapperCol: { span: 20 } }
 
 const RequestPage = (props) => {
   const { intakeValues, intakeForm, onBaseFieldEdit, addMachineDetail, onIntakeSubmit, onMachineDelete, onMachineEdit, onMachineCopy } = props
-  console.log('RequestPage Render')
   return (
     <Layout className="layout">
       <Header>
@@ -46,6 +46,58 @@ const RequestPage = (props) => {
                 General Request Details
               </h2>
             </Row>
+            <Choose>
+              <When condition={false}>
+                <Row>
+                  <Col span={6}>
+                    <HFItem label={'Priority'} {...prioritySelectLayout}>
+                      <PSelect
+                        value={intakeValues.priority}
+                        style={{ width: 100 }}
+                        onSelect={value => onBaseFieldEdit('priority', value)}
+                      >
+                        {intakeForm.priorityOps.map(op => (<Option key={op.id}>{op.label}</Option>))}
+                      </PSelect>
+                    </HFItem>
+                  </Col>
+                  <Col span={15}>
+                    <HFItem label={'Request Type'} {...requestTypeSelectLayout}>
+                      <PSelect
+                        value={intakeValues.requestType}
+                        style={{ width: 180 }}
+                        onSelect={value => onBaseFieldEdit('requestType', value)}
+                      >
+                        {intakeForm.requestTypeOps.map(op => <Option key={op.id}>{op.label}</Option>)}
+                      </PSelect>
+                    </HFItem>
+                  </Col>
+                </Row>
+              </When>
+              <Otherwise>
+                <Row type='flex' className="sdant-form-item">
+                  <Col span={8}>
+                    <HFItem label={'Priority'} {...prioritySelectLayout}>
+                      <RadioGroup
+                        value={intakeValues.priority}
+                        onChange={e => onBaseFieldEdit('priority', e.target.value)}
+                      >
+                        {intakeForm.priorityOps.map(op => (<RadioBtn value={op.id} key={op.id}>{op.label}</RadioBtn>))}
+                      </RadioGroup>
+                    </HFItem>
+                  </Col>
+                  <Col span={15}>
+                    <HFItem label={'Request Type'} {...requestTypeSelectLayout}>
+                      <RadioGroup
+                        value={intakeValues.requestType}
+                        onChange={e => onBaseFieldEdit('requestType', e.target.value)}
+                      >
+                        {intakeForm.requestTypeOps.map(op => <RadioBtn value={op.id} key={op.id}>{op.label}</RadioBtn>)}
+                      </RadioGroup>
+                    </HFItem>
+                  </Col>
+                </Row>
+              </Otherwise>
+            </Choose>
             <HFItem label={'Title'}>
               <PInput
                 value={intakeValues.title || ''}
@@ -60,50 +112,6 @@ const RequestPage = (props) => {
                 name='projectName'
               />
             </HFItem>
-            {/*<Row>*/}
-              {/*<Col span={9}>*/}
-                {/*<HFItem label={'Priority'} labelWidth={8}>*/}
-                  {/*<Radio.Group value={intakeValues.priority} onChange={value => onBaseFieldEdit('priority', value)}>*/}
-                    {/*<Radio.Button value="large">Large</Radio.Button>*/}
-                    {/*<Radio.Button value="default">Default</Radio.Button>*/}
-                    {/*<Radio.Button value="small">Small</Radio.Button>*/}
-                  {/*</Radio.Group>*/}
-                {/*</HFItem>*/}
-              {/*</Col>*/}
-              {/*<Col span={15}>*/}
-                {/*<HFItem label={'Request Type'}>*/}
-                  {/*<Radio.Group value={intakeValues.requestType} onChange={value => onBaseFieldEdit('requestType', value)}>*/}
-                    {/*<Radio.Button value="large">Large</Radio.Button>*/}
-                    {/*<Radio.Button value="default">Default</Radio.Button>*/}
-                    {/*<Radio.Button value="small">Small</Radio.Button>*/}
-                  {/*</Radio.Group>*/}
-                {/*</HFItem>*/}
-              {/*</Col>*/}
-            {/*</Row>*/}
-            <Row>
-              <Col span={6}>
-                <HFItem label={'Priority'} {...prioritySelectLayout}>
-                  <PSelect
-                    value={intakeValues.priority}
-                    style={{ width: 100 }}
-                    onSelect={value => onBaseFieldEdit('priority', value)}
-                  >
-                    {intakeForm.priorityOps.map(op => (<Option key={op.id}>{op.label}</Option>))}
-                  </PSelect>
-                </HFItem>
-              </Col>
-              <Col span={15}>
-                <HFItem label={'Request Type'} {...requestTypeSelectLayout}>
-                  <PSelect
-                    value={intakeValues.requestType}
-                    style={{ width: 180 }}
-                    onSelect={value => onBaseFieldEdit('requestType', value)}
-                  >
-                    {intakeForm.requestTypeOps.map(op => <Option key={op.id}>{op.label}</Option>)}
-                  </PSelect>
-                </HFItem>
-              </Col>
-            </Row>
             <HFItem label={'Description'}>
               <PInput
                 type='textarea'

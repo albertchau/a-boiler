@@ -10,7 +10,7 @@
     "stage-1"
   ],
   "plugins": [
-    "react-hot-loader/babel",
+    "jsx-control-statements",
     [
       "import",
       {
@@ -21,6 +21,11 @@
   ],
   "env": {
     "development": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    },
+    "mockDev": {
       "plugins": [
         "transform-es2015-modules-commonjs"
       ]

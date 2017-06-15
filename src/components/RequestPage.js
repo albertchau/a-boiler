@@ -20,8 +20,10 @@ const { Header, Content, Footer } = Layout
 const { Option } = Select
 const { Group: RadioGroup, Button: RadioBtn } = Radio
 
-const prioritySelectLayout = { labelCol: { span: 9 }, wrapperCol: { span: 15 } }
+const prioritySelectLayout = { labelCol: { span: 12 }, wrapperCol: { span: 12 } }
 const requestTypeSelectLayout = { labelCol: { span: 4 }, wrapperCol: { span: 20 } }
+const priorityRadioLayout = { labelCol: { span: 9 }, wrapperCol: { span: 15 } }
+const requestTypeRadioLayout = { labelCol: { span: 4 }, wrapperCol: { span: 20 } }
 
 const RequestPage = (props) => {
   const { intakeValues, intakeForm, onBaseFieldEdit, addMachineDetail, onIntakeSubmit, onMachineDelete, onMachineEdit, onMachineCopy } = props
@@ -47,7 +49,7 @@ const RequestPage = (props) => {
               </h2>
             </Row>
             <Choose>
-              <When condition={false}>
+              <When condition={true}>
                 <Row>
                   <Col span={6}>
                     <HFItem label={'Priority'} {...prioritySelectLayout}>
@@ -76,7 +78,7 @@ const RequestPage = (props) => {
               <Otherwise>
                 <Row type='flex' className="sdant-form-item">
                   <Col span={8}>
-                    <HFItem label={'Priority'} {...prioritySelectLayout}>
+                    <HFItem label={'Priority'} {...priorityRadioLayout}>
                       <RadioGroup
                         value={intakeValues.priority}
                         onChange={e => onBaseFieldEdit('priority', e.target.value)}
@@ -86,7 +88,7 @@ const RequestPage = (props) => {
                     </HFItem>
                   </Col>
                   <Col span={15}>
-                    <HFItem label={'Request Type'} {...requestTypeSelectLayout}>
+                    <HFItem label={'Request Type'} {...requestTypeRadioLayout}>
                       <RadioGroup
                         value={intakeValues.requestType}
                         onChange={e => onBaseFieldEdit('requestType', e.target.value)}

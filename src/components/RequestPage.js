@@ -12,15 +12,19 @@ import {
 } from "../store/intake/actions"
 import PropTypes from "prop-types"
 import MachineRow from "./MachineRow"
-import { Button, Col, Layout, Menu, Row, Select } from "antd"
+import { Button, Col, Layout, Menu, Row, Select, Radio } from "antd"
 import { HFItem, PInput, PSelect } from "./CustomFormInputs"
 import "./RequestPage.scss"
 
 const { Header, Content, Footer } = Layout
 const { Option } = Select
 
+const prioritySelectLayout = { labelCol: { span: 12 }, wrapperCol: { span: 12 } }
+const requestTypeSelectLayout = { labelCol: { span: 3 }, wrapperCol: { span: 18 } }
+
 const RequestPage = (props) => {
   const { intakeValues, intakeForm, onBaseFieldEdit, addMachineDetail, onIntakeSubmit, onMachineDelete, onMachineEdit, onMachineCopy } = props
+  console.log('RequestPage Render')
   return (
     <Layout className="layout">
       <Header>
@@ -56,26 +60,46 @@ const RequestPage = (props) => {
                 name='projectName'
               />
             </HFItem>
+            {/*<Row>*/}
+              {/*<Col span={9}>*/}
+                {/*<HFItem label={'Priority'} labelWidth={8}>*/}
+                  {/*<Radio.Group value={intakeValues.priority} onChange={value => onBaseFieldEdit('priority', value)}>*/}
+                    {/*<Radio.Button value="large">Large</Radio.Button>*/}
+                    {/*<Radio.Button value="default">Default</Radio.Button>*/}
+                    {/*<Radio.Button value="small">Small</Radio.Button>*/}
+                  {/*</Radio.Group>*/}
+                {/*</HFItem>*/}
+              {/*</Col>*/}
+              {/*<Col span={15}>*/}
+                {/*<HFItem label={'Request Type'}>*/}
+                  {/*<Radio.Group value={intakeValues.requestType} onChange={value => onBaseFieldEdit('requestType', value)}>*/}
+                    {/*<Radio.Button value="large">Large</Radio.Button>*/}
+                    {/*<Radio.Button value="default">Default</Radio.Button>*/}
+                    {/*<Radio.Button value="small">Small</Radio.Button>*/}
+                  {/*</Radio.Group>*/}
+                {/*</HFItem>*/}
+              {/*</Col>*/}
+            {/*</Row>*/}
             <Row>
-              <Col span={9}>
-                <HFItem label={'Priority'} labelWidth={8}>
+              <Col span={6}>
+                <HFItem label={'Priority'} {...prioritySelectLayout}>
                   <PSelect
                     value={intakeValues.priority}
-                    style={{ width: 120 }}
+                    style={{ width: 100 }}
                     onSelect={value => onBaseFieldEdit('priority', value)}
                   >
-                    {intakeForm.priorityOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
+                    {intakeForm.priorityOps.map(op => (<Option key={op.id}>{op.label}</Option>))}
                   </PSelect>
                 </HFItem>
               </Col>
               <Col span={15}>
-                <HFItem label={'Request Type'}>
+                <HFItem label={'Request Type'} {...requestTypeSelectLayout}>
                   <PSelect
                     value={intakeValues.requestType}
-                    style={{ width: 120 }}
+                    style={{ width: 180 }}
                     onSelect={value => onBaseFieldEdit('requestType', value)}
                   >
-                    {intakeForm.requestTypeOps.map(op => <Option key={op.value}>{op.label}</Option>)}
+                    {intakeForm.requestTypeOps.map(op => <Option key={op.id}>{op.label}</Option>)}
                   </PSelect>
                 </HFItem>
               </Col>

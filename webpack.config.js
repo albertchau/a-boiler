@@ -113,6 +113,25 @@ const config = createConfig([
     ]),
   ]),
 
+  env('mockDev', [
+    devServer({
+      contentBase: 'public',
+      stats: 'errors-only',
+      historyApiFallback: {
+        index: publicPath,
+      },
+      hot: false,
+      inline: false,
+      watchContentBase: false,
+      host,
+      port,
+    }),
+    sourceMaps(),
+    addPlugins([
+      new webpack.NamedModulesPlugin(),
+    ]),
+  ]),
+
   env('production', [
     splitVendor(),
     addPlugins([

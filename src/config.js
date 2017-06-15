@@ -1,6 +1,7 @@
 const merge = require('lodash/merge')
 
-const apiPort = process.env.API_PORT || 5000
+const mockApiPort = process.env.API_PORT || 5000
+const devApiPort = process.env.API_PORT || 6000
 
 const config = {
   all: {
@@ -12,7 +13,10 @@ const config = {
   },
   test: {},
   development: {
-    apiUrl: `http://0.0.0.0:${apiPort}`,
+    apiUrl: `http://0.0.0.0:${devApiPort}`,
+  },
+  mockDev: {
+    apiUrl: `http://0.0.0.0:${mockApiPort}`,
   },
   production: {
     apiUrl: 'https://jsonplaceholder.typicode.com',

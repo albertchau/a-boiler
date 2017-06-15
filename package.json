@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start": "npm run dev",
+    "start:mock": "npm run mockDev",
     "server": "babel-node server.js",
     "env:dev": "cross-env NODE_ENV=development",
+    "env:mockDev": "cross-env NODE_ENV=mockDev",
     "env:prod": "cross-env NODE_ENV=production",
     "env:example": "cross-env SOURCE=src-example",
     "test": "jest",
@@ -15,6 +17,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:example": "npm run env:example -- npm run storybook",
     "dev": "npm run env:dev -- webpack-dev-server --progress",
+    "mockDev": "npm run env:mockDev -- webpack-dev-server --progress",
     "dev:example": "npm run env:example -- npm run dev",
     "build:clean": "rimraf \"dist/!(.git*|Procfile)**\"",
     "build:copy": "copyfiles -u 1 public/* public/**/* dist",

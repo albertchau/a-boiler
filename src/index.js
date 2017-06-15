@@ -17,7 +17,7 @@ const store = configureStore({}, history, { api: api.create() })
 const renderApp = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <App store={store}/>
     </ConnectedRouter>
   </Provider>
 )

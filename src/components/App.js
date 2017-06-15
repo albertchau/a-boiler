@@ -8,6 +8,7 @@ import enUS from 'antd/lib/locale-provider/en_US'
 
 import theme from "./themes/default"
 import RequestPage from "./RequestPage"
+import { requestPageLoadRequest } from "../store/intake/actions"
 
 injectGlobal`
   body {
@@ -15,13 +16,17 @@ injectGlobal`
   }
 `
 
-const App = () => {
+const App = ({ store }) => {
   return (
     <LocaleProvider locale={enUS}>
       <ThemeProvider theme={theme}>
         <Switch>
           <Route path="/" component={HomePage} exact/>
-          <Route path="/overview/new" component={RequestPage} exact/>
+          <Route path="/overview/new" exact render={props => {
+            store.dispatch(requestPageLoadRequest)
+            // debugger
+            return <RequestPage {...props}/>
+          }}/>
         </Switch>
       </ThemeProvider>
     </LocaleProvider>

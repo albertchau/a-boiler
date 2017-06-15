@@ -19,7 +19,7 @@ const MachineRow = (props) => {
           style={selectWidth}
           onSelect={value => onEdit('actionType', value)}
         >
-          {machineDetailForm.actionTypeOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
+          {machineDetailForm.actionTypeOps.map(op => (<Option key={op.id}>{op.label}</Option>))}
         </PSelect>
       </Col>
       <Col span={3}>
@@ -59,7 +59,7 @@ const MachineRow = (props) => {
           style={selectWidth}
           onSelect={value => onEdit('environment', value)}
         >
-          {machineDetailForm.environmentOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
+          {machineDetailForm.environmentOps.map(op => (<Option key={op.id}>{op.label}</Option>))}
         </PSelect>
       </Col>
       <Col>
@@ -69,7 +69,7 @@ const MachineRow = (props) => {
           style={selectWidth}
           onSelect={value => onEdit('platform', value)}
         >
-          {machineDetailForm.platformOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
+          {machineDetailForm.platformOps.map(op => (<Option key={op.id}>{op.label}</Option>))}
         </PSelect>
       </Col>
       <Col>
@@ -79,7 +79,7 @@ const MachineRow = (props) => {
           style={selectWidth}
           onSelect={value => onEdit('dataCenter', value)}
         >
-          {machineDetailForm.dataCenterOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
+          {machineDetailForm.dataCenterOps.map(op => (<Option key={op.id}>{op.label}</Option>))}
         </PSelect>
       </Col>
       <Col>
@@ -87,9 +87,9 @@ const MachineRow = (props) => {
           placeholder="SKU"
           value={machine.sku}
           style={selectWidth}
-          onSelect={value => onEdit('environment', value)}
+          onSelect={value => onEdit('sku', value)}
         >
-          {machineDetailForm.skuOps.map(op => (<Option key={op.value}>{op.label}</Option>))}
+          {machineDetailForm.skuOps.map(op => (<Option key={op.id}>{op.label}</Option>))}
         </PSelect>
       </Col>
       <Col>

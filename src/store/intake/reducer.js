@@ -1,8 +1,9 @@
 import { initialState } from './selectors'
 import {
   ADD_MACHINE_DETAIL, COPY_MACHINE_DETAIL, DELETE_MACHINE_DETAIL, EDIT_MACHINE_DETAIL,
-  FIELD_EDIT, SUBMIT_INTAKE_FORM
+  FIELD_EDIT, REQUEST_PAGE_LOAD_ERROR, REQUEST_PAGE_LOAD_SUCCESS, SUBMIT_INTAKE_FORM
 } from "./actions"
+import moment from "moment"
 
 const repeatKeyInArray = (arr, repeatKey, nextKey) => {
   const foundKey = arr.indexOf(repeatKey) + 1
@@ -57,8 +58,31 @@ const copyMachineDetail = (intakeValues, { machineKey }) => {
     machineKeys: repeatKeyInArray(machineKeys, machineKey, incrementedCounter),
     machineDetails: {
       ...machineDetails,
-      [incrementedCounter]: machineDetails[ machineKey ]
+      [incrementedCounter]: {
+        ...machineDetails[ machineKey ],
+        id: undefined
+      }
     }
+  }
+}
+
+const convertDateFields = ({projectGoLive, requestBy, ...machineDetail}) => {
+  return {
+    projectGoLive: projectGoLive && moment(projectGoLive),
+    requestBy: requestBy && moment(requestBy),
+    ...machineDetail
+  }
+}
+
+const populateIntakeValues = ({ machineDetails, ...vals }) => {
+  const machineCounter = machineDetails.length
+  const machineKeys = new Array(machineCounter).fill(0).map((_, i) => i)
+  return {
+    machineCounter,
+    machineKeys: machineKeys,
+    machineDetails: machineKeys
+      .reduce((acc, curr) => Object.assign(acc, { [curr]: convertDateFields(machineDetails[ curr ]) }), {}),
+    ...vals,
   }
 }
 
@@ -78,6 +102,10 @@ export default (state = initialState, action) => {
       return { ...state, intakeValues: editMachineDetail(state.intakeValues, action) }
     case DELETE_MACHINE_DETAIL:
       return { ...state, intakeValues: deleteMachineDetail(state.intakeValues, action) }
+    case REQUEST_PAGE_LOAD_ERROR:
+      return { ...state, error: action.error }
+    case REQUEST_PAGE_LOAD_SUCCESS:
+      return { ...state, intakeValues: populateIntakeValues(action.values), intakeForm: action.form }
     case SUBMIT_INTAKE_FORM:
       console.log(action.intakeValues)
       return state

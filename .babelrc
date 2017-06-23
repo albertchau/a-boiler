@@ -10,14 +10,7 @@
     "stage-1"
   ],
   "plugins": [
-    "jsx-control-statements",
-    [
-      "import",
-      {
-        "libraryName": "antd",
-        "style": "css"
-      }
-    ]
+    "jsx-control-statements"
   ],
   "env": {
     "development": {

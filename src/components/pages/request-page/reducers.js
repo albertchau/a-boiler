@@ -1,8 +1,5 @@
 import { initialState } from './selectors'
-import {
-  ADD_MACHINE_DETAIL, COPY_MACHINE_DETAIL, DELETE_MACHINE_DETAIL, EDIT_MACHINE_DETAIL,
-  FIELD_EDIT, REQUEST_PAGE_LOAD_ERROR, REQUEST_PAGE_LOAD_SUCCESS, SUBMIT_INTAKE_FORM
-} from "./actions"
+import * as actions from "./actions"
 import moment from "moment"
 
 const repeatKeyInArray = (arr, repeatKey, nextKey) => {
@@ -66,10 +63,10 @@ const copyMachineDetail = (intakeValues, { machineKey }) => {
   }
 }
 
-const convertDateFields = ({projectGoLive, requestBy, ...machineDetail}) => {
+const convertDateFields = ({ projectGoLive, requestBy, ...machineDetail }) => {
   return {
-    projectGoLive: projectGoLive && moment(projectGoLive),
-    requestBy: requestBy && moment(requestBy),
+    projectGoLive: projectGoLive && moment(projectGoLive).toDate(),
+    requestBy: requestBy && moment(requestBy).toDate(),
     ...machineDetail
   }
 }
@@ -86,29 +83,36 @@ const populateIntakeValues = ({ machineDetails, ...vals }) => {
   }
 }
 
-export default (state = initialState, action) => {
+const requestPageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FIELD_EDIT:
+    case actions.FIELD_EDIT:
       const { field, value } = action
       let intakeValues = { ...state.intakeValues, ...{ [field]: value } }
       return { ...state, intakeValues }
-    case 'ignore':
-      return state
-    case ADD_MACHINE_DETAIL:
+    case actions.ADD_MACHINE_DETAIL:
       return { ...state, intakeValues: addMachineToIntake(state.intakeValues) }
-    case COPY_MACHINE_DETAIL:
+    case actions.COPY_MACHINE_DETAIL:
       return { ...state, intakeValues: copyMachineDetail(state.intakeValues, action) }
-    case EDIT_MACHINE_DETAIL:
+    case actions.EDIT_MACHINE_DETAIL:
       return { ...state, intakeValues: editMachineDetail(state.intakeValues, action) }
-    case DELETE_MACHINE_DETAIL:
+    case actions.DELETE_MACHINE_DETAIL:
       return { ...state, intakeValues: deleteMachineDetail(state.intakeValues, action) }
-    case REQUEST_PAGE_LOAD_ERROR:
+    case actions.REQUEST_PAGE_LOAD_ERROR:
       return { ...state, error: action.error }
-    case REQUEST_PAGE_LOAD_SUCCESS:
-      return { ...state, intakeForm: action.form }
-    case SUBMIT_INTAKE_FORM:
+    case actions.REQUEST_PAGE_LOAD_SUCCESS:
+      return { ...state, intakeForm: action.form, intakeValues: populateIntakeValues(action.values) }
+    case actions.POST_REQUEST_FORM_REQUEST:
+      return { ...state, isSubmitting: true }
+    case actions.POST_REQUEST_FORM_SUCCESS:
+      return { ...state, isSubmitting: false, success: action.success }
+    case actions.POST_REQUEST_FORM_ERROR:
+      return { ...state, isSubmitting: false, failure: action.failure }
+    case actions.SUBMIT_INTAKE_FORM:
       console.log(action.intakeValues)
       return state
   }
   return state
 }
+
+
+export { requestPageReducer }

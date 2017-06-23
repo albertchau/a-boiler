@@ -7,7 +7,7 @@ import createHistory from 'history/createBrowserHistory'
 import { ThemeProvider } from 'styled-components'
 import configureStore from 'store/configure'
 import api from 'services/api'
-import theme from 'components/themes/default'
+import theme from 'themes/default'
 
 const history = createHistory()
 const store = configureStore({}, history, { api: api.create() })

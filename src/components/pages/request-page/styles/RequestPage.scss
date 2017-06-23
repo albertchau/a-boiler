@@ -1,0 +1,121 @@
+.cap-request-page-container {
+  margin-top: 10px;
+  .text-area-container,
+  .text-input-container {
+    margin: 0 10px 10px;
+  }
+  .bottom-submit-btns {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 5px;
+  }
+}
+
+.cap-general-info-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  input[type="text"],
+  textarea[type="textarea"] {
+    min-width: 370px;
+    width: 100%;
+  }
+}
+
+.hr-splitter {
+  border: none;
+  background-color: #bdc3c7;
+  height: 1px;
+  margin: 20px 0;
+}
+
+.cap-machine-requests-container,
+.cap-general-info-container {
+  width: 95%;
+}
+
+.cap-machine-row-container {
+  margin: 0 5px 20px 10px;
+}
+
+.cap-machine-title {
+  margin-bottom: 10px;
+}
+
+.cap-machine-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.in-machine-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  input[type="text"] {
+    &:not(.date-picker-input) {
+      width: 100%;
+    }
+    &.date-picker-input {
+      width: auto !important;
+      padding-right: 10px;
+    }
+    margin: 0;
+  }
+
+  button.date-picker-open-btn,
+  button.date-picker-clear-btn {
+    bottom: 16px;
+  }
+
+  .select-field {
+    width: 120px;
+    @media screen and (max-width: 1600px) {
+      width: 100px;
+    }
+    @media screen and (max-width: 1400px) {
+      width: 80px;
+    }
+    .select-button {
+      height: 32px;
+      width: 100%;
+    }
+  }
+
+  .text-input-container {
+    flex: 6 2;
+    &.naming-pattern-wrapper {
+      flex: 3 2;
+    }
+    &.quantity-wrapper {
+      flex: 2 1;
+    }
+  }
+
+  > div {
+    margin: 0;
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  .in-machine-btns {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .in-machine-delete-btn,
+  .in-machine-copy-btn {
+    height: 32px;
+    padding: 9px 15px;
+    margin: 0;
+  }
+
+  .in-machine-copy-btn {
+    margin-right: 10px
+  }
+}

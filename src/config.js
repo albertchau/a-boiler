@@ -19,7 +19,7 @@ const config = {
     apiUrl: `http://0.0.0.0:${mockApiPort}`,
   },
   production: {
-    apiUrl: 'https://jsonplaceholder.typicode.com',
+    apiUrl: 'http://thisisacoolflaskappalbert.us-west-2.elasticbeanstalk.com',
   },
 }
 
